@@ -60,12 +60,12 @@ export default function Navbar() {
       </div>
       {/* sidebar menu for mobile */}
       <div
-        className={`bg-background absolute top-0 right-0 bottom-0 overflow-hidden transition-all ${isVisible ? "w-full" : "w-0"}`}
+        className={`bg-background absolute top-0 right-0 bottom-0 overflow-hidden transition-all ${isVisible ? "w-full" : "w-0"} z-50`}
       >
         <div className="flex flex-col text-muted-foreground">
           <div
             onClick={() => setIsVisible(false)}
-            className="flex items-center gap-4 cursor-pointer"
+            className="flex items-center gap-1 cursor-pointer"
           >
             <ChevronLeft />
             <span>Back</span>

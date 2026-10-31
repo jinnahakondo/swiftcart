@@ -1,6 +1,6 @@
 import Hero from "@/components/ui/home/Hero";
 import { asset } from "./asset/asset";
-import { ProductCard } from "@/components/ui/home/ProductCard";
+import { ProductCard } from "@/components/product/ProductCard";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
       <Hero />
       <div className="grid grid-cols-4 gap-3">
         {asset.products.map((product) => (
-          <ProductCard product={product} key={product._id}/>
+          <ProductCard product={product} key={product._id} />
         ))}
       </div>
     </div>

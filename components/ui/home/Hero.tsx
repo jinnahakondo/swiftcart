@@ -9,29 +9,23 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
+} from "../carousel";
 
 export default function Hero() {
   return (
     <div>
       <Carousel plugins={[Autoplay({ delay: 3000 })]}>
         <CarouselContent>
-          <CarouselItem>
-            <Image
-              src={asset.hero}
-              priority
-              alt="hero slide "
-              className="h-full max-h-100 w-full  "
-            />
-          </CarouselItem>
-          <CarouselItem>
-            <Image
-              src={asset.hero1}
-              priority
-              alt="hero slide "
-              className="h-full max-h-100 w-full  "
-            />
-          </CarouselItem>
+          {asset.slides.map((slide, i) => (
+            <CarouselItem key={i}>
+              <Image
+                src={slide}
+                priority={i === 0}
+                alt="hero slide "
+                className="h-full max-h-100 w-full  "
+              />
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious className="left-0!" />
         <CarouselNext className="right-0!" />

@@ -1,4 +1,209 @@
-import hero from './hero.png'
-import hero1 from './hero1.jpeg'
-import logo from './logo.png'
-export const asset={logo,hero, hero1}
+import { ProductType } from "@/types/productType";
+import hero from "./hero.png";
+import hero1 from "./hero1.jpeg";
+import hero2 from "./hero2.png";
+import logo from "./logo.png";
+
+const products: ProductType[] = [
+  {
+    _id: "prod_001",
+    slug: "classic-cotton-tshirt",
+    title: "Classic Cotton T-Shirt",
+    description:
+      "A comfortable, breathable 100% organic cotton everyday t-shirt.",
+    price: 29.99,
+    discountPrice: 24.99,
+    stock: 120,
+    brand: "UrbanBasics",
+    images: [
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800",
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800",
+    ],
+    category: "Apparel",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["White", "Black", "Navy"],
+    bestSeller: true,
+    rating: 4.8,
+    soldCount: 450,
+  },
+  {
+    _id: "prod_002",
+    slug: "slim-fit-denim-jeans",
+    title: "Slim Fit Denim Jeans",
+    description:
+      "Modern slim fit stretch denim jeans designed for all-day comfort and durability.",
+    price: 69.99,
+    discountPrice: 54.99,
+    stock: 85,
+    brand: "DenimCo",
+    images: ["https://images.unsplash.com/photo-1542272604-787c3835535d?w=800"],
+    category: "Apparel",
+    sizes: ["30x32", "32x32", "34x32", "36x32"],
+    colors: ["Dark Blue", "Light Wash", "Black"],
+    bestSeller: true,
+    rating: 4.7,
+    soldCount: 320,
+  },
+  {
+    _id: "prod_003",
+    slug: "waterproof-hiking-backpack",
+    title: "Waterproof Hiking Backpack",
+    description:
+      "A rugged 40L outdoor backpack with ergonomic support and weatherproof compartments.",
+    price: 119.99,
+    discountPrice: 99.99,
+    stock: 40,
+    brand: "TrailPro",
+    images: [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
+      "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=800",
+    ],
+    category: "Outdoor",
+    sizes: ["One Size"],
+    colors: ["Olive Green", "Charcoal", "Orange"],
+    bestSeller: false,
+    rating: 4.5,
+    soldCount: 110,
+  },
+  {
+    _id: "prod_004",
+    slug: "wireless-noise-canceling-headphones",
+    title: "Wireless Noise-Canceling Headphones",
+    description:
+      "Over-ear Bluetooth headphones featuring active noise cancellation and 30-hour battery life.",
+    price: 199.99,
+    discountPrice: 169.99,
+    stock: 60,
+    brand: "SoundWave",
+    images: [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800",
+    ],
+    category: "Electronics",
+    sizes: ["Adjustable"],
+    colors: ["Matte Black", "Silver"],
+    bestSeller: true,
+    rating: 4.9,
+    soldCount: 680,
+  },
+  {
+    _id: "prod_005",
+    slug: "stainless-steel-water-bottle",
+    title: "Stainless Steel Water Bottle",
+    description:
+      "Double-wall vacuum insulated water bottle that keeps drinks cold for 24 hours.",
+    price: 24.99,
+    discountPrice: 19.99,
+    stock: 200,
+    brand: "HydroLife",
+    images: [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800",
+    ],
+    category: "Accessories",
+    sizes: ["500ml", "750ml", "1L"],
+    colors: ["Steel", "Teal", "Matte Black"],
+    bestSeller: false,
+    rating: 4.4,
+    soldCount: 210,
+  },
+  {
+    _id: "prod_006",
+    slug: "leather-minimalist-wallet",
+    title: "Leather Minimalist Wallet",
+    description:
+      "Slim genuine leather wallet with RFID blocking technology and quick-access card slot.",
+    price: 39.99,
+    discountPrice: 30,
+    stock: 95,
+    brand: "ArtisanCraft",
+    images: [
+      "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800",
+    ],
+    category: "Accessories",
+    sizes: ["Standard"],
+    colors: ["Brown", "Tan", "Black"],
+    bestSeller: false,
+    rating: 4.6,
+    soldCount: 185,
+  },
+  {
+    _id: "prod_007",
+    slug: "running-sports-sneakers",
+    title: "Running Sports Sneakers",
+    description:
+      "Lightweight athletic running shoes equipped with responsive cushioning foam soles.",
+    price: 89.99,
+    discountPrice: 74.99,
+    stock: 110,
+    brand: "Velocity",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800",
+    ],
+    category: "Footwear",
+    sizes: ["US 8", "US 9", "US 10", "US 11"],
+    colors: ["Blue/White", "Grey/Neon", "All Black"],
+    bestSeller: true,
+    rating: 4.8,
+    soldCount: 540,
+  },
+  {
+    _id: "prod_008",
+    slug: "fleece-pullover-hoodie",
+    title: "Fleece Pullover Hoodie",
+    description:
+      "Cozy heavyweight fleece hoodie featuring a front kangaroo pocket and adjustable drawstring hood.",
+    price: 54.99,
+    discountPrice: 45.99,
+    stock: 75,
+    brand: "UrbanBasics",
+    images: ["https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800"],
+    category: "Apparel",
+    sizes: ["S", "M", "L", "XXL"],
+    colors: ["Maroon", "Heather Grey", "Forest Green"],
+    bestSeller: false,
+    rating: 4.3,
+    soldCount: 95,
+  },
+  {
+    _id: "prod_009",
+    slug: "smart-fitness-watch",
+    title: "Smart Fitness Watch",
+    description:
+      "Fitness tracker with heart rate monitor, sleep tracking, and built-in GPS functionality.",
+    price: 129.99,
+    discountPrice: 109.99,
+    stock: 50,
+    brand: "FitTech",
+    images: [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800",
+    ],
+    category: "Electronics",
+    sizes: ["Regular"],
+    colors: ["Rose Gold", "Space Grey"],
+    bestSeller: true,
+    rating: 4.7,
+    soldCount: 410,
+  },
+  {
+    _id: "prod_010",
+    slug: "polarized-sunglasses",
+    title: "Polarized Sunglasses",
+    description:
+      "Classic frame sunglasses with UV400 protection and glare-reducing polarized lenses.",
+    price: 45.0,
+    discountPrice: 35.0,
+    stock: 150,
+    brand: "SunStyle",
+    images: [
+      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800",
+    ],
+    category: "Accessories",
+    sizes: ["Free Size"],
+    colors: ["Tortoise Shell", "Matte Black"],
+    bestSeller: false,
+    rating: 4.5,
+    soldCount: 160,
+  },
+];
+
+export const asset = { logo, slides: [hero, hero1, hero2], products };

@@ -1,13 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-export default function ImageView() {
-  const images = [
-    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
-    "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800",
-    "https://img.drz.lazcdn.com/static/bd/p/8df9d95efd86a67f9d01595d0772bbf0.jpg_720x720q80.jpg_.webp",
-  ];
-
+export default function ImageView({ images }: { images: string[] }) {
   const [active, setActive] = useState(images[0]);
   return (
     <div>

@@ -12,6 +12,10 @@ import NavLink from "../navlink/NavLink";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 
+import { Button } from "../ui/button";
+import { Login } from "../auth/LoginCard";
+import { Signup } from "../auth/SignupCard";
+
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -53,8 +57,19 @@ export default function Navbar() {
         {/* action icons */}
         <div className="flex items-center gap-4">
           <Search className="cursor-pointer" />
-          <ShoppingCart className="cursor-pointer" />
-          <CircleUser className="cursor-pointer" />
+          <div className="relative">
+            <ShoppingCart className="cursor-pointer" />
+            <span className=" absolute -top-1 -right-2 bg-accent text-accent-foreground text-xs font-semibold rounded-full min-w-5 h-5 flex justify-center items-center ">
+              10
+            </span>
+          </div>
+          <Link href={"/login"}>
+            <CircleUser />
+          </Link>
+
+          {/* <Button>
+            <Link href={"/login"}>Login</Link>
+          </Button> */}
           <Menu className="sm:hidden" onClick={() => setIsVisible(true)} />
         </div>
       </div>

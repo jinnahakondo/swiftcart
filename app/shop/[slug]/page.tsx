@@ -1,4 +1,6 @@
 import { asset } from "@/app/asset/asset";
+import AddtoCartButton from "@/components/buttons/AddtoCartButton";
+import AddtoWishlistButton from "@/components/buttons/AddtoWishlistButton";
 import ImageView from "@/components/product/ImageView";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -10,7 +12,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Handbag, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 
 export default async function ProductDetails({
   params,
@@ -90,10 +92,8 @@ export default async function ProductDetails({
 
           {/* action buttons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Button className="w-full">
-              <Handbag /> Add to Cart
-            </Button>
-            <Button variant={"outline"}>Add to Wishlist</Button>
+            <AddtoCartButton />
+            <AddtoWishlistButton />
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@ export default async function ProductDetails({
         className="pt-10 flex flex-col"
         defaultValue="description"
       >
-        <TabsList className="border">
+        <TabsList className=" ">
           <TabsTrigger value="description">Description</TabsTrigger>
           <TabsTrigger value="reviews">Reviews</TabsTrigger>
         </TabsList>

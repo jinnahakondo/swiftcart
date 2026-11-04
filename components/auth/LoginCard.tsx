@@ -25,7 +25,10 @@ export function LoginCard() {
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signIn("credentials", { redirect: false, email, password });
+    alert("submited");
   };
 
   return (
@@ -71,6 +74,8 @@ export function LoginCard() {
           <Field>
             <FieldLabel>Email address</FieldLabel>
             <Input
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
               type="email"
               autoComplete="email"
@@ -83,6 +88,8 @@ export function LoginCard() {
             <FieldLabel>Password</FieldLabel>
             <div className="relative">
               <Input
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"

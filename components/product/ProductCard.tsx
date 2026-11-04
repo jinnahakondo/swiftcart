@@ -1,6 +1,6 @@
 import { Handbag, Heart, Star } from "lucide-react";
 
-import { ProductType } from "@/types/productType";
+import { ProductType } from "@/lib/types/productType";
 import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";

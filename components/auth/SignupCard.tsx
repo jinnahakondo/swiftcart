@@ -5,11 +5,11 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -18,16 +18,34 @@ import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Signup submitted");
+
+    setIsLoading(true);
+
+    const form = e.target;
+    const name = form.fullName.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = { name, email, password };
+    try {
+      const res = await axios.post("/api/register", user);
+      setIsLoading(false);
+      form.reset();
+      router.push("/login");
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.message);
+    }
   };
 
   return (
@@ -74,6 +92,7 @@ export function SignupCard() {
           <Field>
             <FieldLabel>Full Name</FieldLabel>
             <Input
+              name="fullName"
               placeholder="John Doe"
               type="text"
               autoComplete="name"
@@ -86,6 +105,7 @@ export function SignupCard() {
           <Field>
             <FieldLabel>Email address</FieldLabel>
             <Input
+              name="email"
               placeholder="name@example.com"
               type="email"
               autoComplete="email"
@@ -99,6 +119,7 @@ export function SignupCard() {
             <FieldLabel>Password</FieldLabel>
             <div className="relative">
               <Input
+                name="password"
                 placeholder="Create a password"
                 type={showPassword ? "text" : "password"}
                 autoComplete="new-password"
@@ -113,32 +134,6 @@ export function SignupCard() {
                 tabIndex={-1}
               >
                 {showPassword ? (
-                  <EyeOff className="h-4 w-4" />
-                ) : (
-                  <Eye className="h-4 w-4" />
-                )}
-              </button>
-            </div>
-          </Field>
-
-          <Field>
-            <FieldLabel>Confirm Password</FieldLabel>
-            <div className="relative">
-              <Input
-                placeholder="Confirm your password"
-                type={showConfirmPassword ? "text" : "password"}
-                autoComplete="new-password"
-                disabled={isLoading || isGoogleLoading}
-                className="h-10 pr-10"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
-                tabIndex={-1}
-              >
-                {showConfirmPassword ? (
                   <EyeOff className="h-4 w-4" />
                 ) : (
                   <Eye className="h-4 w-4" />

@@ -13,12 +13,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Field, FieldLabel } from "../ui/field";
+import { Field, FieldError, FieldLabel } from "../ui/field";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import z from "zod";
+import { signupSchema } from "@/lib/validations/auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type FormData = z.infer<typeof signupSchema>;
 
 export function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,21 +34,24 @@ export function SignupCard() {
 
   const router = useRouter();
 
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(signupSchema),
+  });
 
+  const onSubmit = async (data: FormData) => {
     setIsLoading(true);
 
-    const form = e.target;
-    const name = form.fullName.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const user = { name, email, password };
     try {
-      const res = await axios.post("/api/register", user);
+      await axios.post("/api/register", data);
       setIsLoading(false);
-      form.reset();
+      reset();
       router.push("/login");
+      toast.success("Success! You can now start exploring Swiftcart");
     } catch (error) {
       setIsLoading(false);
       console.log(error.message);
@@ -88,45 +98,47 @@ export function SignupCard() {
         </div>
 
         {/* Credentials Form */}
-        <form onSubmit={handleSubmit} className="space-y-3.5">
-          <Field>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
+          <Field data-invalid={!!errors.name}>
             <FieldLabel>Full Name</FieldLabel>
             <Input
-              name="fullName"
+              {...register("name", { required: true })}
+              aria-invalid={!!errors.name}
               placeholder="John Doe"
               type="text"
-              autoComplete="name"
               disabled={isLoading || isGoogleLoading}
               className="h-10"
-              required
             />
+            <FieldError errors={errors.name ? [errors.name] : []} />
           </Field>
 
-          <Field>
+          <Field data-invalid={!!errors.email}>
             <FieldLabel>Email address</FieldLabel>
             <Input
-              name="email"
+              {...register("email", {
+                required: true,
+              })}
               placeholder="name@example.com"
               type="email"
               autoComplete="email"
               disabled={isLoading || isGoogleLoading}
               className="h-10"
-              required
             />
+            <FieldError errors={errors.email ? [errors.email] : []} />
           </Field>
 
-          <Field>
+          <Field data-invalid={!!errors.password}>
             <FieldLabel>Password</FieldLabel>
             <div className="relative">
               <Input
-                name="password"
+                {...register("password", { required: true })}
                 placeholder="Create a password"
                 type={showPassword ? "text" : "password"}
-                autoComplete="new-password"
                 disabled={isLoading || isGoogleLoading}
                 className="h-10 pr-10"
-                required
               />
+              <FieldError errors={errors.password ? [errors.password] : []} />
+
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}

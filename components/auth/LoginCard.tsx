@@ -13,22 +13,32 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Field, FieldLabel } from "../ui/field";
+import { Field, FieldError, FieldLabel } from "../ui/field";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 import Link from "next/link";
+import z from "zod";
+import { loginSchema } from "@/lib/validations/auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type FormData = z.infer<typeof loginSchema>;
 
 export function LoginCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    signIn("credentials", { redirect: false, email, password });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (data: FormData) => {
+    await signIn("credentials", { redirect: false, ...data });
     alert("submited");
   };
 
@@ -71,30 +81,30 @@ export function LoginCard() {
         </div>
 
         {/* Credentials Form */}
-        <form onSubmit={handleSubmit} className="space-y-3.5">
-          <Field>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
+          <Field data-invalid={!!errors.email}>
             <FieldLabel>Email address</FieldLabel>
             <Input
-              name="email"
+              {...register("email", { required: true })}
+              aria-invalid={!!errors.email}
               placeholder="name@example.com"
               type="email"
-              autoComplete="email"
               disabled={isLoading || isGoogleLoading}
               className="h-10"
             />
+            <FieldError errors={errors.email ? [errors.email] : []} />
           </Field>
 
-          <Field>
+          <Field data-invalid={!!errors.password}>
             <FieldLabel>Password</FieldLabel>
             <div className="relative">
               <Input
-                name="password"
+                {...register("password", { required: true })}
+                aria-invalid={!!errors.password}
                 placeholder="Enter your password"
                 type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
                 disabled={isLoading || isGoogleLoading}
                 className="h-10 pr-10"
-                required
               />
               <button
                 type="button"

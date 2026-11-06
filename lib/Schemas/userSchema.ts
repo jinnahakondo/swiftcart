@@ -1,6 +1,28 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, type Model } from "mongoose";
+import bcrypt from "bcryptjs";
 
-const userSchema = new Schema(
+const SALT_ROUNDS = 12;
+
+export interface IUser {
+  name: string;
+  email: string;
+  password?: string;
+  image?: string;
+  provider: "credentials" | "google";
+  role: "user" | "admin";
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IUserMethods {
+  comparePassword(candidate: string): Promise<boolean>;
+}
+
+// `Record<never, never>` is `{}`: Mongoose's default query-helpers generic,
+// written this way so the empty-object lint rule stays happy.
+type UserModel = Model<IUser, Record<never, never>, IUserMethods>;
+
+const userSchema = new Schema<IUser, UserModel, IUserMethods>(
   {
     name: {
       type: String,
@@ -41,8 +63,34 @@ const userSchema = new Schema(
       default: "user",
     },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    toJSON: {
+      transform: (_doc, ret) => {
+        delete ret.password;
+        delete (ret as { __v?: number }).__v;
+        return ret;
+      },
+    },
+  },
 );
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+userSchema.pre("save", async function () {
+  if (!this.isModified("password") || !this.password) return;
+
+  this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
+});
+
+userSchema.methods.comparePassword = async function (
+  candidate: string,
+): Promise<boolean> {
+  if (!this.password) return false;
+
+  return bcrypt.compare(candidate, this.password);
+};
+
+const User: UserModel =
+  (mongoose.models.User as UserModel) ||
+  mongoose.model("User", userSchema);
+
 export default User;

@@ -12,6 +12,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Next.js 16 App Router ecommerce app (React 19, Tailwind v4, shadcn/ui). Auth and Mongo scaffolding exist, but the storefront still serves hardcoded product data.
 
+## Workflow
+
+- For every task, present an implementation plan first: files to touch, the changes in each, ordering, risks, and how the result will be verified.
+- Wait for explicit user confirmation before editing any file. Do not write code, run migrations, or spawn editing subagents during the planning step.
+- After confirmation, implement only what the approved plan covers; if mid-way discoveries require deviating, stop and re-confirm.
+
 ## Commands
 
 - Use **pnpm** (lockfile + `packageManager: pnpm@12.15.0`), not npm/yarn.

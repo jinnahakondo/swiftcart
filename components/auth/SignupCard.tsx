@@ -38,6 +38,7 @@ export function SignupCard() {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(signupSchema),
@@ -47,11 +48,8 @@ export function SignupCard() {
     setIsLoading(true);
 
     try {
-      await axios.post("/api/register", data);
-      setIsLoading(false);
-      reset();
-      router.push("/login");
-      toast.success("Success! You can now start exploring Swiftcart");
+      const res = await axios.post("/api/register", data);
+   
     } catch (error) {
       setIsLoading(false);
       console.log(error.message);

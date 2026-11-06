@@ -49,7 +49,13 @@ export function SignupCard() {
 
     try {
       const res = await axios.post("/api/register", data);
-   
+      if (res.data.success) {
+        toast.success("Success! You can now start exploring Swiftcart");
+        reset();
+        setIsLoading(false);
+        router.push("/login");
+      }
+      setError("email", res.data.message);
     } catch (error) {
       setIsLoading(false);
       console.log(error.message);

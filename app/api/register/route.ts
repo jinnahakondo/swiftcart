@@ -26,11 +26,15 @@ export async function POST(req: NextRequest) {
     });
 
     const result = await User.create(user);
-    return sendSuccessRes({ message: "User created", data: result });
-  } catch (error: any) {
+    return sendSuccessRes({
+      status: 201,
+      message: "User created",
+      data: result,
+    });
+  } catch (error: unknown) {
     return sendErrorRes({
       message: "Failed to create User",
-      error: error.message,
+      error: error instanceof Error ? error.message : "Internal Server Error",
     });
   }
 }

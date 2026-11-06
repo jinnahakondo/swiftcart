@@ -12,10 +12,6 @@ import NavLink from "../navlink/NavLink";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 
-import { Button } from "../ui/button";
-import { Login } from "../auth/LoginCard";
-import { Signup } from "../auth/SignupCard";
-
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
 

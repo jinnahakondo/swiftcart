@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const user = await User.create({
       name: parsed.data.name,
       email: parsed.data.email,
-      password: parsed.data.email,
+      password: parsed.data.password,
     });
 
     const result = await User.create(user);

@@ -53,7 +53,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           {
             $setOnInsert: {
               provider: "google",
-              id: user.id,
               name: user.name ?? "",
               email: user.email,
               image: user.image ?? "",
@@ -66,13 +65,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
         token.role = user.role;
       }
       return token;
     },
     session({ session, token }) {
-      session.user.id = String(token.id);
       session.user.role = String(token.role);
       return session;
     },

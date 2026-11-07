@@ -24,6 +24,7 @@ import z from "zod";
 import { signupSchema } from "@/lib/validations/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import SocialLogin from "../buttons/SocialLogin";
 
 type FormData = z.infer<typeof signupSchema>;
 
@@ -49,16 +50,17 @@ export function SignupCard() {
 
     try {
       const res = await axios.post("/api/register", data);
-      if (res.data.success) {
-        toast.success("Success! You can now start exploring Swiftcart");
-        reset();
-        setIsLoading(false);
-        router.push("/login");
+      if (!res.data.success) {
+        setError("email", { type: "server", message: res.data.message });
+        return;
       }
-      setError("email", res.data.message);
+      toast.success("Success! You can now start exploring Swiftcart");
+      reset();
+      router.push("/login");
     } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
       setIsLoading(false);
-      console.log(error.message);
     }
   };
 
@@ -78,20 +80,11 @@ export function SignupCard() {
       {/* Main Content Body */}
       <CardContent className="space-y-4 py-4 p-0">
         {/* Social Signup Button */}
-        <Button
-          onClick={() => signIn("google")}
-          type="button"
-          variant="outline"
-          className="w-full h-10 hover:bg-accent flex items-center justify-center gap-2"
-          disabled={isLoading || isGoogleLoading}
-        >
-          {isGoogleLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-          ) : (
-            <FcGoogle className="h-4 w-4" />
-          )}
-          Sign up with Google
-        </Button>
+        <SocialLogin
+          isGoogleLoading={isGoogleLoading}
+          isLoading={isLoading}
+          setIsGoogleLoading={setIsGoogleLoading}
+        />
 
         {/* Divider */}
         <div className="relative flex items-center justify-center">
@@ -106,7 +99,7 @@ export function SignupCard() {
           <Field data-invalid={!!errors.name}>
             <FieldLabel>Full Name</FieldLabel>
             <Input
-              {...register("name", { required: true })}
+              {...register("name")}
               aria-invalid={!!errors.name}
               placeholder="John Doe"
               type="text"
@@ -119,9 +112,8 @@ export function SignupCard() {
           <Field data-invalid={!!errors.email}>
             <FieldLabel>Email address</FieldLabel>
             <Input
-              {...register("email", {
-                required: true,
-              })}
+              {...register("email")}
+              aria-invalid={!!errors.email}
               placeholder="name@example.com"
               type="email"
               autoComplete="email"
@@ -135,14 +127,13 @@ export function SignupCard() {
             <FieldLabel>Password</FieldLabel>
             <div className="relative">
               <Input
-                {...register("password", { required: true })}
+                {...register("password")}
+                aria-invalid={!!errors.password}
                 placeholder="Create a password"
                 type={showPassword ? "text" : "password"}
                 disabled={isLoading || isGoogleLoading}
                 className="h-10 pr-10"
               />
-              <FieldError errors={errors.password ? [errors.password] : []} />
-
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -156,6 +147,7 @@ export function SignupCard() {
                 )}
               </button>
             </div>
+            <FieldError errors={errors.password ? [errors.password] : []} />
           </Field>
 
           <Button
@@ -175,7 +167,6 @@ export function SignupCard() {
         Already have an account?{" "}
         <Link
           href="/login"
-          //   onClick={(e) => e.preventDefault()}
           className="font-semibold text-primary hover:underline ml-1 "
         >
           Sign in

@@ -39,7 +39,6 @@ async function connectDB() {
     cached.promise = null;
     throw e;
   }
-  console.log("db connected");
 
   return cached.conn;
 }

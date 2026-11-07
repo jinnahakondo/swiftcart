@@ -21,6 +21,9 @@ import z from "zod";
 import { loginSchema } from "@/lib/validations/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import SocialLogin from "../buttons/SocialLogin";
 
 type FormData = z.infer<typeof loginSchema>;
 
@@ -28,7 +31,7 @@ export function LoginCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -38,8 +41,24 @@ export function LoginCard() {
   });
 
   const onSubmit = async (data: FormData) => {
-    await signIn("credentials", { redirect: false, ...data });
-    alert("submited");
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (res?.error) {
+        toast.error("Invalid email or password");
+        return;
+      }
+      toast.success("Welcome back");
+      router.push("/");
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -58,24 +77,16 @@ export function LoginCard() {
       {/* Main Content Body */}
       <CardContent className="space-y-4 py-4 p-0">
         {/* Social Login Button */}
-        <Button
-          onClick={() => signIn("google")}
-          type="button"
-          variant="outline"
-          className="w-full h-10 hover:bg-accent"
-        >
-          {isGoogleLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin mr-2 text-muted-foreground" />
-          ) : (
-            <FcGoogle className="mr-2 h-4 w-4" />
-          )}
-          Continue with Google
-        </Button>
+        <SocialLogin
+          isLoading={isLoading}
+          isGoogleLoading={isGoogleLoading}
+          setIsGoogleLoading={setIsGoogleLoading}
+        />
 
         {/* Divider */}
         <div className="relative flex items-center justify-center">
           <div className="w-full border-t border-border" />
-          <span className="absolute bg-cS<HTMLForard px-3 text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+          <span className="absolute bg-card px-3 text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
             or
           </span>
         </div>
@@ -85,7 +96,7 @@ export function LoginCard() {
           <Field data-invalid={!!errors.email}>
             <FieldLabel>Email address</FieldLabel>
             <Input
-              {...register("email", { required: true })}
+              {...register("email")}
               aria-invalid={!!errors.email}
               placeholder="name@example.com"
               type="email"
@@ -99,7 +110,7 @@ export function LoginCard() {
             <FieldLabel>Password</FieldLabel>
             <div className="relative">
               <Input
-                {...register("password", { required: true })}
+                {...register("password")}
                 aria-invalid={!!errors.password}
                 placeholder="Enter your password"
                 type={showPassword ? "text" : "password"}

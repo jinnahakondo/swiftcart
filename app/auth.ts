@@ -23,7 +23,7 @@ const credentials = Credentials({
     );
     // if user is not present return null
     if (!user) return null;
-    const isMatched = user.comparePassword(parsed.data.password);
+    const isMatched = await user.comparePassword(parsed.data.password);
     // return null if db hased password & credentials password is not match
     if (!isMatched) return null;
     const { id, name, email, image, role } = user;
@@ -53,6 +53,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           {
             $setOnInsert: {
               provider: "google",
+              id: user.id,
               name: user.name ?? "",
               email: user.email,
               image: user.image ?? "",

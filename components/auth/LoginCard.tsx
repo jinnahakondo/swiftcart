@@ -41,6 +41,7 @@ export function LoginCard() {
   });
 
   const onSubmit = async (data: FormData) => {
+    setIsLoading(true)
     try {
       const res = await signIn("credentials", {
         redirect: false,

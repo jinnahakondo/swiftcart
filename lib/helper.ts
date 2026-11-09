@@ -19,12 +19,14 @@ export const sendSuccessRes = ({
   data,
   status = 200,
 }: sendSuccessResType) => {
-  return NextResponse.json({
-    success,
-    message,
-    ...(data && { data }),
-    status,
-  });
+  return NextResponse.json(
+    {
+      success,
+      message,
+      ...(data && { data }),
+    },
+    { status },
+  );
 };
 
 export const sendErrorRes = ({
@@ -33,10 +35,12 @@ export const sendErrorRes = ({
   message,
   error,
 }: sendErrorResType) => {
-  return NextResponse.json({
-    success,
-    message,
-    ...(error && process.env.NODE_ENV === "development" && { error }),
-    status,
-  });
+  return NextResponse.json(
+    {
+      success,
+      message,
+      ...(error && process.env.NODE_ENV === "development" && { error }),
+    },
+    { status },
+  );
 };

@@ -25,11 +25,10 @@ export async function POST(req: NextRequest) {
       password: parsed.data.password,
     });
 
-    const result = await User.create(user);
     return sendSuccessRes({
       status: 201,
       message: "User created",
-      data: result,
+      data: user,
     });
   } catch (error: unknown) {
     return sendErrorRes({

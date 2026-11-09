@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
+import { signIn } from "next-auth/react";
 
 interface IProps {
   isGoogleLoading: boolean;
@@ -20,17 +20,10 @@ export default function SocialLogin({
   const handleSignIn = async () => {
     try {
       setIsGoogleLoading(true);
-      const res = await signIn("google", { redirect: false, callbackUrl: "/" });
-
-      if (!res?.url) {
-        toast.error("Something went wrong");
-        setIsGoogleLoading(false);
-        return;
-      }
-
-      window.location.href = res.url;
+      await signIn("google");
     } catch {
       toast.error("Something went wrong");
+    } finally {
       setIsGoogleLoading(false);
     }
   };

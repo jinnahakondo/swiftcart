@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { FcGoogle } from "react-icons/fc";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
@@ -41,7 +41,7 @@ export function LoginCard() {
   });
 
   const onSubmit = async (data: FormData) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const res = await signIn("credentials", {
         redirect: false,
@@ -50,7 +50,7 @@ export function LoginCard() {
       });
 
       if (res?.error) {
-        toast.error("Invalid email or password");
+        toast.error(res.error);
         return;
       }
       toast.success("Welcome back");

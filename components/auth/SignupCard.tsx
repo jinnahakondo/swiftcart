@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { FcGoogle } from "react-icons/fc";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
@@ -17,7 +16,6 @@ import { Field, FieldError, FieldLabel } from "../ui/field";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod";
@@ -32,14 +30,12 @@ export function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
     reset,
-    setError,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(signupSchema),
@@ -47,23 +43,21 @@ export function SignupCard() {
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
-
     try {
-      const res = await axios.post("/api/register", data);
-      if (!res.data.success) {
-        setError("email", { type: "server", message: res.data.message });
-        return;
-      }
+      await axios.post("/api/register", data);
       toast.success("Success! You can now start exploring Swiftcart");
       reset();
       router.push("/login");
-    } catch (error) {
-      toast.error("Something went wrong");
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <Card className="w-full max-w-sm p-6 ">
       {/* Header / Brand Badge */}

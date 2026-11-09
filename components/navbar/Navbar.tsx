@@ -11,9 +11,13 @@ import React, { useState } from "react";
 import NavLink from "../navlink/NavLink";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
+import { signOut, useSession } from "next-auth/react";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const { status } = useSession();
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -59,13 +63,13 @@ export default function Navbar() {
               10
             </span>
           </div>
-          <Link href={"/login"}>
-            <CircleUser />
-          </Link>
-
-          {/* <Button>
-            <Link href={"/login"}>Login</Link>
-          </Button> */}
+          {status === "authenticated" ? (
+            <Button onClick={() => signOut()}>LogOut</Button>
+          ) : (
+            <Link href={"/login"}>
+              <CircleUser />
+            </Link>
+          )}
           <Menu className="sm:hidden" onClick={() => setIsVisible(true)} />
         </div>
       </div>

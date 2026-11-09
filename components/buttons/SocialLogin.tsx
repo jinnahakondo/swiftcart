@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 interface IProps {
   isGoogleLoading: boolean;
@@ -17,6 +18,21 @@ export default function SocialLogin({
   isLoading,
   setIsGoogleLoading,
 }: IProps) {
+  const params = useSearchParams();
+  const error = params.get("error");
+  useEffect(() => {
+    if (error === "CredentialsAccountExists") {
+      toast.error(
+        "This email is already registered. Please login with your email and password.",
+        {
+          duration: Infinity,
+          closeButton: true,
+          position: "bottom-center",
+        },
+      );
+    }
+  }, [error]);
+
   const handleSignIn = async () => {
     try {
       setIsGoogleLoading(true);

@@ -3,6 +3,7 @@ import { asset } from "./asset/asset";
 import { ProductCard } from "@/components/product/ProductCard";
 
 export default function Home() {
+  
   return (
     <div className="space-y-10">
       <Hero />

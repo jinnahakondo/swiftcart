@@ -4,6 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "./Schemas/userSchema";
 import { loginSchema } from "./validations/auth";
 import connectDB from "./db/dbConnection";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import client from "./db/mongodb";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -16,6 +18,16 @@ export const authOptions: AuthOptions = {
           access_type: "offline",
           response_type: "code",
         },
+      },
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          image: profile.picture,
+          email: profile.email,
+          emailVerified: profile.email_verified,
+          role: profile.role ?? "user",
+        };
       },
     }),
     CredentialsProvider({
@@ -49,23 +61,41 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+  },
   callbacks: {
-    signIn({ account, user }) {
+    async signIn({ account, user }) {
+      console.log({ user });
+      if (account?.provider === "google") {
+        await connectDB();
+        const isExist = await User.exists({
+          email: user?.email,
+          provider: "credentials",
+        });
+        if (isExist) {
+          throw new Error("CredentialsAccountExists");
+        }
+      }
       return true;
     },
     jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
         token.role = user.role;
       }
       return token;
     },
     session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
         session.user.role = token.role;
       }
       return session;
     },
   },
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
+  adapter: MongoDBAdapter(client),
 };

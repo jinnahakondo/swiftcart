@@ -17,7 +17,7 @@ import { Button } from "../ui/button";
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
 
-  const { status } = useSession();
+  const { status, data } = useSession();
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -54,6 +54,7 @@ export default function Navbar() {
             </NavLink>
           ))}
         </div>
+        <p className="text-black">{data?.user.role}</p>
         {/* action icons */}
         <div className="flex items-center gap-4">
           <Search className="cursor-pointer" />

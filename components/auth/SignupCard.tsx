@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -74,11 +74,13 @@ export function SignupCard() {
       {/* Main Content Body */}
       <CardContent className="space-y-4 py-4 p-0">
         {/* Social Signup Button */}
-        <SocialLogin
-          isGoogleLoading={isGoogleLoading}
-          isLoading={isLoading}
-          setIsGoogleLoading={setIsGoogleLoading}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <SocialLogin
+            isGoogleLoading={isGoogleLoading}
+            isLoading={isLoading}
+            setIsGoogleLoading={setIsGoogleLoading}
+          />
+        </Suspense>
 
         {/* Divider */}
         <div className="relative flex items-center justify-center">

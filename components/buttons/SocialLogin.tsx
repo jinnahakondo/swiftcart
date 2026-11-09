@@ -36,7 +36,7 @@ export default function SocialLogin({
   const handleSignIn = async () => {
     try {
       setIsGoogleLoading(true);
-      await signIn("google");
+      await signIn("google", { callbackUrl: "/" });
     } catch {
       toast.error("Something went wrong");
     } finally {

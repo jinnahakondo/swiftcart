@@ -1,5 +1,3 @@
-
-
 export type ProductType = {
   _id: string;
   slug: string;
@@ -13,7 +11,7 @@ export type ProductType = {
   category: string;
   sizes: string[];
   colors: string[];
-  bestSeller: boolean;
+  bestSelling: boolean;
   rating: number;
   soldCount: number;
   createdBy?: string;

@@ -6,6 +6,7 @@ const SALT_ROUNDS = 12;
 export interface IUser {
   name: string;
   email: string;
+  isEmailVerified?: boolean;
   password?: string;
   image?: string;
   provider: "credentials" | "google";
@@ -40,6 +41,10 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
         "Please provide a valid email address",
       ],
+    },
+    isEmailVerified: {
+      type: Boolean,
+      default: false,
     },
     password: {
       type: String,

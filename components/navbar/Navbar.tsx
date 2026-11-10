@@ -60,8 +60,8 @@ export default function Navbar() {
           <Search className="cursor-pointer" />
           <div className="relative">
             <ShoppingCart className="cursor-pointer" />
-            <span className=" absolute -top-1 -right-2 bg-accent text-accent-foreground text-xs font-semibold rounded-full min-w-5 h-5 flex justify-center items-center ">
-              10
+            <span className=" absolute -top-1 -right-2 bg-accent text-accent-foreground text-xs font-semibold rounded-full min-w-4 h-4 flex justify-center items-center border border-primary">
+              0
             </span>
           </div>
           {status === "authenticated" ? (

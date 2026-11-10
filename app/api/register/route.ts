@@ -1,7 +1,7 @@
 import connectDB from "@/lib/db/dbConnection";
 import { sendErrorRes, sendSuccessRes } from "@/lib/helper";
 import User from "@/lib/Schemas/userSchema";
-import { signupSchema } from "@/lib/validations/auth";
+import { signupSchema } from "@/lib/validations/auth.schema";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {

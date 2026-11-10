@@ -19,7 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod";
-import { signupSchema } from "@/lib/validations/auth";
+import { signupSchema } from "@/lib/validations/auth.schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SocialLogin from "../buttons/SocialLogin";

@@ -2,7 +2,7 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import User from "./Schemas/userSchema";
-import { loginSchema } from "./validations/auth";
+import { loginSchema } from "./validations/auth.schema";
 import connectDB from "./db/dbConnection";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import client from "./db/mongodb";
@@ -25,7 +25,7 @@ export const authOptions: AuthOptions = {
           name: profile.name,
           image: profile.picture,
           email: profile.email,
-          emailVerified: profile.email_verified,
+          isEmailVerified: profile.email_verified,
           role: profile.role ?? "user",
         };
       },

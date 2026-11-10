@@ -18,7 +18,7 @@ import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 import Link from "next/link";
 import z from "zod";
-import { loginSchema } from "@/lib/validations/auth";
+import { loginSchema } from "@/lib/validations/auth.schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";

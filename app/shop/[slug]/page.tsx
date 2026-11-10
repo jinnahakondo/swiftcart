@@ -2,6 +2,7 @@ import { asset } from "@/app/asset/asset";
 import AddtoCartButton from "@/components/buttons/AddtoCartButton";
 import AddtoWishlistButton from "@/components/buttons/AddtoWishlistButton";
 import ImageView from "@/components/product/ImageView";
+import ProductOptions from "@/components/product/ProductOptions";
 import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
@@ -10,7 +11,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StarIcon } from "lucide-react";
 
@@ -73,6 +74,15 @@ export default async function ProductDetails({
               <Badge variant={"success"}>Save {save}৳ on this item!</Badge>
             )}
           </div>
+
+          {/* size & color options */}
+          {product && (
+            <ProductOptions
+              key={product.slug}
+              sizes={product.sizes}
+              colors={product.colors}
+            />
+          )}
 
           {/* additional  */}
           <div className="pb-4 space-y-2">

@@ -45,6 +45,7 @@ export const authOptions: AuthOptions = {
           }).select("+password");
           if (user) {
             const isMatched = await user.comparePassword(parsed.data.password);
+            delete user.password;
             if (isMatched) {
               const { id, name, email, image, role } = user;
               return {
@@ -67,7 +68,6 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async signIn({ account, user }) {
-      console.log({ user });
       if (account?.provider === "google") {
         await connectDB();
         const isExist = await User.exists({
@@ -82,12 +82,14 @@ export const authOptions: AuthOptions = {
     },
     jwt({ token, user }) {
       if (user) {
+        token.id = user.id;
         token.role = user.role;
       }
       return token;
     },
     session({ session, token }) {
       if (token) {
+        session.user.id = token.id;
         session.user.role = token.role;
       }
       return session;

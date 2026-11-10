@@ -50,11 +50,17 @@ export function LoginCard() {
       });
 
       if (res?.error) {
-        toast.error(res.error);
+        toast.error(
+          res.error === "CredentialsSignin"
+            ? "You are not registered. Please signup"
+            : "Something went wrong",
+        );
         return;
       }
-      toast.success("Welcome back");
-      router.push("/");
+      if (res?.ok) {
+        router.push("/");
+        toast.success("Welcome back");
+      }
     } catch (error) {
       toast.error("Something went wrong");
     } finally {

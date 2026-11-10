@@ -19,8 +19,7 @@ export interface IUserMethods {
   comparePassword(candidate: string): Promise<boolean>;
 }
 
-// `Record<never, never>` is `{}`: Mongoose's default query-helpers generic,
-// written this way so the empty-object lint rule stays happy.
+
 type UserModel = Model<IUser, Record<never, never>, IUserMethods>;
 
 const userSchema = new Schema<IUser, UserModel, IUserMethods>(

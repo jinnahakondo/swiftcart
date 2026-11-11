@@ -1,6 +1,5 @@
 import type { ProductType } from "@/lib/types/productType";
 
-
 export type CartItemType<P = string> = {
   _id?: string;
   product: P;
@@ -16,4 +15,4 @@ export type CartItemType<P = string> = {
 };
 
 export type PopulatedCartItemType = CartItemType<ProductType | null>;
-
+export type CartItemKey = Pick<CartItemType, "product" | "size" | "color">;

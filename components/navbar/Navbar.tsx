@@ -4,7 +4,6 @@ import {
   CircleUser,
   Menu,
   Search,
-  ShoppingCart,
 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -13,12 +12,12 @@ import Image from "next/image";
 import { asset } from "@/app/asset/asset";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "../ui/button";
+import CartIcon from "../cart/CartIcon";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
 
   const { status, data } = useSession();
- 
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -55,16 +54,11 @@ export default function Navbar() {
             </NavLink>
           ))}
         </div>
-    
+
         {/* action icons */}
         <div className="flex items-center gap-4">
           <Search className="cursor-pointer" />
-          <div className="relative">
-            <ShoppingCart className="cursor-pointer" />
-            <span className=" absolute -top-1 -right-2 bg-accent text-accent-foreground text-xs font-semibold rounded-full min-w-4 h-4 flex justify-center items-center border border-primary">
-              0
-            </span>
-          </div>
+         <CartIcon/>
           {status === "authenticated" ? (
             <Button onClick={() => signOut()}>LogOut</Button>
           ) : (

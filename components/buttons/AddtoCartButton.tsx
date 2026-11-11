@@ -2,8 +2,8 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { Handbag } from "lucide-react";
-import { useCartStore } from "@/store/cart.store";
-import { ProductType } from "@/lib/types/productType";
+import { useCartStore } from "@/store/useCartStore";
+import type { ProductType } from "@/lib/types/productType";
 import { CartItemType } from "@/lib/types/cartType";
 import { toast } from "sonner";
 

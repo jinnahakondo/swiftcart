@@ -1,8 +1,6 @@
 import { asset } from "@/app/asset/asset";
-import AddtoCartButton from "@/components/buttons/AddtoCartButton";
-import AddtoWishlistButton from "@/components/buttons/AddtoWishlistButton";
 import ImageView from "@/components/product/ImageView";
-import ProductOptions from "@/components/product/ProductOptions";
+import ProductOptions from "@/components/product/ProductExtraInfo";
 import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
@@ -81,30 +79,9 @@ export default async function ProductDetails({
               key={product.slug}
               sizes={product.sizes}
               colors={product.colors}
+              product={product}
             />
           )}
-
-          {/* additional  */}
-          <div className="pb-4 space-y-2">
-            <div className="flex items-center justify-between">
-              <p>Brand</p>
-              <p className="font-semibold">{product?.brand}</p>
-            </div>
-            <div className="flex items-center justify-between">
-              <p>Category</p>
-              <p className="font-semibold">{product?.category}</p>
-            </div>
-            <div className="flex items-center justify-between">
-              <p>Stock</p>
-              <p className="font-semibold">Available</p>
-            </div>
-          </div>
-
-          {/* action buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <AddtoCartButton />
-            <AddtoWishlistButton />
-          </div>
         </div>
       </div>
       <Tabs

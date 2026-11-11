@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { Toaster } from "sonner";
 import AuthProvider from "./AuthProvider";
+import { CartHydration } from "@/components/CartHydration";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <AuthProvider>
           <Navbar />
           <div className="w-full max-w-7xl mx-auto px-4">
+            <CartHydration />
             {children}
             <Toaster />
           </div>

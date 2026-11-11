@@ -1,10 +1,10 @@
-import { Handbag, Heart, Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 
 import { ProductType } from "@/lib/types/productType";
 import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+import AddtoCartButton from "../buttons/AddtoCartButton";
 
 export function ProductCard({ product }: { product: ProductType }) {
   const save = product.price - product.discountPrice;
@@ -45,9 +45,7 @@ export function ProductCard({ product }: { product: ProductType }) {
         </div>
       </CardContent>
       <div className="px-4 mt-auto">
-        <Button className="w-full mt-auto flex items-center gap-2">
-          <Handbag /> Add to Cart
-        </Button>
+        <AddtoCartButton product={product} />
       </div>
     </Card>
   );

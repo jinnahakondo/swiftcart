@@ -10,6 +10,7 @@ interface CartState {
   quantityDec: (cartItemKey: CartItemKey) => void;
   removeItemFromCart: (cartItemKey: CartItemKey) => void;
   clearCart: () => void;
+  getItemQuantity: (cartItemKey: CartItemKey) => number;
 }
 
 function isSameCartItem(a: CartItemKey, b: CartItemKey) {
@@ -23,7 +24,7 @@ function isSameCartItem(a: CartItemKey, b: CartItemKey) {
 export const useCartStore = create<CartState>()(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         cart: [],
         // add item to cart
         addToCart: (newItem) => {
@@ -80,6 +81,13 @@ export const useCartStore = create<CartState>()(
         },
         // clear cart
         clearCart: () => set({ cart: [] }),
+        // get total quantity of a product
+        getItemQuantity: (cartItemKey) => {
+          const item = get().cart.find((item) =>
+            isSameCartItem(item, cartItemKey),
+          );
+          return item?.quantity ?? 0;
+        },
       }),
       {
         name: "swiftcart-cart",

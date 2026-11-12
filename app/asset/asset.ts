@@ -13,7 +13,7 @@ const products: ProductType[] = [
       "A comfortable, breathable 100% organic cotton everyday t-shirt.",
     price: 29.99,
     discountPrice: 24.99,
-    stock: 120,
+    stock: 5,
     brand: "UrbanBasics",
     images: [
       "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800",

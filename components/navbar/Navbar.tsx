@@ -13,7 +13,6 @@ import { asset } from "@/app/asset/asset";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import CartIcon from "../cart/CartIcon";
-import ThemeToggle from "../theme/ThemeToggle";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -59,7 +58,6 @@ export default function Navbar() {
         {/* action icons */}
         <div className="flex items-center gap-4">
           <Search className="cursor-pointer" />
-          <ThemeToggle />
           <CartIcon />
           {status === "authenticated" ? (
             <Button onClick={() => signOut()}>LogOut</Button>

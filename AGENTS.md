@@ -18,6 +18,25 @@ Next.js 16 App Router ecommerce app (React 19, Tailwind v4, shadcn/ui). Auth and
 - Wait for explicit user confirmation before editing any file. Do not write code, run migrations, or spawn editing subagents during the planning step.
 - After confirmation, implement only what the approved plan covers; if mid-way discoveries require deviating, stop and re-confirm.
 
+## Task execution rules
+
+These rules are firm. Follow them over any inference from context or convention.
+
+1. Only perform the exact task requested.
+2. Do not add extra features or functionality.
+3. Do not refactor unrelated code.
+4. Do not modify files outside the task scope.
+5. Do not install new dependencies unless explicitly requested.
+6. Preserve the existing architecture, coding patterns, and naming conventions.
+7. Do not make unrelated UI or styling changes.
+8. If you find other bugs or improvement opportunities, report them separately. Do not fix them automatically.
+9. If the requested task requires changes outside the specified scope, explain why and ask for permission first.
+10. After completing the task, list all modified files and explain what changed.
+
+Minimal changes are preferred. Do not do more than requested.
+
+
+
 ## Commands
 
 - Use **pnpm** (lockfile + `packageManager: pnpm@12.15.0`), not npm/yarn.

@@ -4,6 +4,8 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import CartItem from "./CartItem";
 import { CartItemType } from "@/lib/types/cartType";
+import Swal from "sweetalert2";
+import ClearCart from "./ClearCart";
 
 function rowKey(item: CartItemType) {
   return `${item.product}-${item.size ?? ""}-${item.color ?? ""}`;
@@ -11,7 +13,6 @@ function rowKey(item: CartItemType) {
 
 export default function Cart() {
   const cart = useCartStore((state) => state.cart);
-  const clearCart = useCartStore((state) => state.clearCart);
   const total = cart
     .reduce((sum, item) => sum + item.price * item.quantity, 0)
     .toFixed(2);
@@ -34,9 +35,7 @@ export default function Cart() {
             <h1 className="text-2xl font-semibold">
               Cart ({cart.length} {cart.length === 1 ? "item" : "items"})
             </h1>
-            <Button variant="ghost" size="sm" onClick={clearCart}>
-              Clear cart
-            </Button>
+            <ClearCart />
           </div>
           <ul className="mt-6 divide-y divide-border border-y border-border">
             {cart.map((item) => (

@@ -17,14 +17,14 @@ export default function CartIcon() {
           <ShoppingCart className="size-6" aria-hidden />
         </Link>
       </Button>
-      {itemCount > 0 && (
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -top-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full border border-muted-foreground bg-muted px-1 text-xs leading-none font-semibold text-muted-foreground tabular-nums"
-        >
-          {itemCount > 99 ? "99+" : itemCount}
-        </span>
-      )}
+
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-1 -right-2 flex h-5 w-5 items-center justify-center rounded-full border border-muted-foreground bg-muted px-1 text-xs leading-none font-semibold text-muted-foreground tabular-nums"
+      >
+        {itemCount > 99 ? "99+" : itemCount}
+      </span>
+
       <span aria-live="polite" className="sr-only">
         {itemCount > 0 ? `${itemCount} ${itemLabel} in cart` : ""}
       </span>

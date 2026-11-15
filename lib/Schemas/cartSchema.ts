@@ -12,6 +12,7 @@ export interface ICartItem {
   size?: string;
   color?: string;
   quantity: number;
+  isSelected: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -83,6 +84,10 @@ const cartItemSchema = new Schema<ICartItem, CartItemModel>(
         validator: Number.isInteger,
         message: "Quantity must be a whole number",
       },
+    },
+    isSelected:{
+      type:Boolean,
+      default:false
     },
   },
   {

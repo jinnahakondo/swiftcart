@@ -10,6 +10,7 @@ export type CartItemType<P = string> = {
   size?: string;
   color?: string;
   quantity: number;
+  isSelected:boolean;
   createdAt?: string;
   updatedAt?: string;
 };

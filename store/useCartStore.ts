@@ -2,15 +2,22 @@
 import { create } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 import { CartItemKey, CartItemType } from "@/lib/types/cartType";
+import axios from "axios";
 
 interface CartState {
   cart: CartItemType[];
-  addToCart: (newItem: CartItemType) => void;
-  quantityInc: (cartItemKey: CartItemKey) => void;
-  quantityDec: (cartItemKey: CartItemKey) => void;
-  removeItemFromCart: (cartItemKey: CartItemKey) => void;
+  isAuthenticated:boolean;
+  isSyncing:boolean;
+
+  setAuthStatus:(status:boolean)=>void;
+  addToCart: (newItem: CartItemType) => Promise<void>;
+  quantityInc: (cartItemKey: CartItemKey) => Promise<void>;
+  quantityDec: (cartItemKey: CartItemKey) => Promise<void>;
+  removeItemFromCart: (cartItemKey: CartItemKey) => Promise<void>;
   clearCart: () => void;
   getItemQuantity: (cartItemKey: CartItemKey) => number;
+
+  // mergeGuestCartWithDB:()=>Promise<void>
 }
 
 function isSameCartItem(a: CartItemKey, b: CartItemKey) {
@@ -26,8 +33,15 @@ export const useCartStore = create<CartState>()(
     persist(
       (set, get) => ({
         cart: [],
+        isSyncing:false,
+        isAuthenticated:false,
+        setAuthStatus:(status)=>{
+          set({isAuthenticated:status})
+          console.log(get().isAuthenticated)
+        },
+
         // add item to cart
-        addToCart: (newItem) => {
+        addToCart: async (newItem) => {
           set((state) => {
             const cart = state.cart;
             const isExistitem = cart.find((item) =>
@@ -50,9 +64,16 @@ export const useCartStore = create<CartState>()(
               return { cart: [...cart, newItem] };
             }
           });
+          if(get().isAuthenticated){
+            try {
+              await axios.post("/api/cart", newItem);
+            } catch (error) {
+              console.error("Failed to sync cart with server:", error);
+            }
+          }
         },
         // increment item quantity
-        quantityInc: (cartItemKey) => {
+        quantityInc: async (cartItemKey) => {
           set((state) => ({
             cart: state.cart.map((item) =>
               isSameCartItem(item, cartItemKey)
@@ -60,24 +81,45 @@ export const useCartStore = create<CartState>()(
                 : item,
             ),
           }));
+          if(get().isAuthenticated){
+            try {
+              await axios.patch("/api/cart/quantity-inc", cartItemKey);
+        }catch (error) {
+              console.error("Failed to sync cart with server:", error);
+            }
+          }
         },
         // decrement item quantity
-        quantityDec: (cartItemKey) => {
+        quantityDec: async (cartItemKey) => {
           set((state) => ({
             cart: state.cart.map((item) =>
               isSameCartItem(item, cartItemKey)
                 ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
                 : item,
             ),
-          }));
+          }))
+          if(get().isAuthenticated){
+            try {
+              await axios.patch("/api/cart/quantity-dec", cartItemKey);
+            } catch (error) {
+              console.error("Failed to sync cart with server:", error);
+            }
+          }
         },
         // remove a item form cart
-        removeItemFromCart: (cartItemKey) => {
+        removeItemFromCart: async (cartItemKey) => {
           set((state) => ({
             cart: state.cart.filter(
               (item) => !isSameCartItem(item, cartItemKey),
             ),
           }));
+          if(get().isAuthenticated){
+            try {
+              await axios.delete("/api/cart", { data: cartItemKey });
+            } catch (error) {
+              console.error("Failed to sync cart with server:", error);
+            }
+          }
         },
         // clear cart
         clearCart: () => set({ cart: [] }),
@@ -88,6 +130,10 @@ export const useCartStore = create<CartState>()(
           );
           return item?.quantity ?? 0;
         },
+        // merge guest cart with db 
+        // mergeGuestCartWithDB:()=>{
+        //   return ;
+        // }
       }),
       {
         name: "swiftcart-cart",

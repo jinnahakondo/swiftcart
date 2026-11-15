@@ -1,4 +1,6 @@
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "./authOptions";
 
 type sendSuccessResType = {
   success?: boolean;
@@ -44,3 +46,11 @@ export const sendErrorRes = ({
     { status },
   );
 };
+
+export const auth= async ()=>{
+const session =await getServerSession(authOptions);
+if(!session || !session.user){
+  throw new Error("User is not authenticated");
+}
+return session.user
+}

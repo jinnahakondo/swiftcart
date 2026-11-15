@@ -4,7 +4,9 @@ import mongoose, { Schema, type Model, type Types } from "mongoose";
 export interface ICartItem {
   _id?: Types.ObjectId;
   user: Types.ObjectId;
-  product: Types.ObjectId;
+  // product: Types.ObjectId;
+  product:string;
+
   slug: string;
   title: string;
   image: string;
@@ -34,10 +36,15 @@ const cartItemSchema = new Schema<ICartItem, CartItemModel>(
       ref: "User",
       required: [true, "Cart item must belong to a user"],
     },
+    // product: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "Product",
+    //   required: [true, "Cart item must reference a product"],
+    // },
     product: {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
+      type: String,
       required: [true, "Cart item must reference a product"],
+      trim: true,
     },
     slug: {
       type: String,

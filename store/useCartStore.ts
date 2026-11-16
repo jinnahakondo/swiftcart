@@ -6,10 +6,10 @@ import axios from "axios";
 
 interface CartState {
   cart: CartItemType[];
-  isAuthenticated:boolean;
-  isSyncing:boolean;
+  isAuthenticated: boolean;
+  isSyncing: boolean;
 
-  setAuthStatus:(status:boolean)=>void;
+  setAuthStatus: (status: boolean) => void;
   addToCart: (newItem: CartItemType) => Promise<void>;
   quantityInc: (cartItemKey: CartItemKey) => Promise<void>;
   quantityDec: (cartItemKey: CartItemKey) => Promise<void>;
@@ -17,7 +17,7 @@ interface CartState {
   clearCart: () => Promise<void>;
   getItemQuantity: (cartItemKey: CartItemKey) => number;
 
-  mergeGuestCartWithDB:()=>Promise<void>
+  mergeGuestCartWithDB: () => Promise<void>
 }
 
 function isSameCartItem(a: CartItemKey, b: CartItemKey) {
@@ -33,10 +33,10 @@ export const useCartStore = create<CartState>()(
     persist(
       (set, get) => ({
         cart: [],
-        isSyncing:false,
-        isAuthenticated:false,
-        setAuthStatus:(status)=>{
-          set({isAuthenticated:status})
+        isSyncing: false,
+        isAuthenticated: false,
+        setAuthStatus: (status) => {
+          set({ isAuthenticated: status })
           console.log(get().isAuthenticated)
         },
 
@@ -51,12 +51,12 @@ export const useCartStore = create<CartState>()(
               const updateCart = cart.map((item) =>
                 isSameCartItem(item, newItem)
                   ? {
-                      ...item,
-                      quantity: Math.min(
-                        item.quantity + (newItem.quantity ?? 1),
-                        99,
-                      ),
-                    }
+                    ...item,
+                    quantity: Math.min(
+                      item.quantity + (newItem.quantity ?? 1),
+                      99,
+                    ),
+                  }
                   : item,
               );
               return { cart: updateCart };
@@ -64,7 +64,7 @@ export const useCartStore = create<CartState>()(
               return { cart: [...cart, newItem] };
             }
           });
-          if(get().isAuthenticated){
+          if (get().isAuthenticated) {
             try {
               await axios.post("/api/cart", newItem);
             } catch (error) {
@@ -81,10 +81,10 @@ export const useCartStore = create<CartState>()(
                 : item,
             ),
           }));
-          if(get().isAuthenticated){
+          if (get().isAuthenticated) {
             try {
               await axios.patch("/api/cart/quantity-inc", cartItemKey);
-        }catch (error) {
+            } catch (error) {
               console.error("Failed to sync cart with server:", error);
             }
           }
@@ -98,7 +98,7 @@ export const useCartStore = create<CartState>()(
                 : item,
             ),
           }))
-          if(get().isAuthenticated){
+          if (get().isAuthenticated) {
             try {
               await axios.patch("/api/cart/quantity-dec", cartItemKey);
             } catch (error) {
@@ -113,7 +113,7 @@ export const useCartStore = create<CartState>()(
               (item) => !isSameCartItem(item, cartItemKey),
             ),
           }));
-          if(get().isAuthenticated){
+          if (get().isAuthenticated) {
             try {
               await axios.delete("/api/cart", { data: cartItemKey });
             } catch (error) {
@@ -124,7 +124,7 @@ export const useCartStore = create<CartState>()(
         // clear cart
         clearCart: async () => {
           set({ cart: [] });
-          if(get().isAuthenticated){
+          if (get().isAuthenticated) {
             try {
               await axios.delete("/api/cart/clear-cart");
             } catch (error) {
@@ -140,11 +140,16 @@ export const useCartStore = create<CartState>()(
           return item?.quantity ?? 0;
         },
         // merge guest cart with db 
-        mergeGuestCartWithDB:()=>{
-          if(get().isAuthenticated){
-            
+        mergeGuestCartWithDB: async () => {
+          if (get().isAuthenticated) {
+            try {
+              const dbItems = await axios.post("/api/cart/merge-cart", { cartItems: get().cart });
+              set({ cart: dbItems.data.data });
+            } catch (error) {
+              console.error("Failed to merge guest cart with server:", error);
+            }
           }
-          return ;
+          return;
         }
       }),
       {

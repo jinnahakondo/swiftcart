@@ -1,22 +1,28 @@
 import connectDB from "@/lib/db/dbConnection";
 import { auth, sendErrorRes, sendSuccessRes } from "@/lib/helper";
 import CartItem from "@/lib/Schemas/cartSchema";
+import { cartItemSchema } from "@/lib/validations/cartItem.schema";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
         const item = await req.json();
+        const parsedItem = cartItemSchema.safeParse(item);
+        if (!parsedItem.success) {
+            return sendErrorRes({ status: 400, message: "Invalid cart item data", });
+        }
         await connectDB();
         const user = await auth();
-        const existingItem = await CartItem.findOne({ user: user.id, product: item.productId, color: item.color, size: item.size });
-        const qty = item.quantity ?? 1;
+        const { product, size, color, quantity } = parsedItem.data;
+        const existingItem = await CartItem.findOne({ user: user.id, product, color, size });
+        const qty = quantity ?? 1;
         if (existingItem) {
             const updateItem = await CartItem.findOneAndUpdate(
                 {
                     user: user.id,
-                    product: item.productId,
-                    color: item.color,
-                    size: item.size
+                    product,
+                    color,
+                    size
                 },
                 { $inc: { quantity: qty } },
                 { new: true }
@@ -25,7 +31,7 @@ export async function POST(req: NextRequest) {
         }
         const newItem = await CartItem.create({
             user: user.id,
-            ...item
+            ...parsedItem.data
         });
 
         return sendSuccessRes({ status: 201, message: "Item added to cart successfully", data: newItem })

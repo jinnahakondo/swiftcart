@@ -4,20 +4,21 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect, useRef } from 'react'
 
 export default function CartSyncProvider() {
-    const {status}=useSession();
-    console.log({status})
-    const setAuthStatus=useCartStore(state=>state.setAuthStatus)
-    const hasMerged=useRef(false)
-    useEffect(()=>{
-        if(status==="authenticated"){
+    const { status } = useSession();
+    const setAuthStatus = useCartStore(state => state.setAuthStatus)
+    const mergeGuestCartWithDB = useCartStore(state => state.mergeGuestCartWithDB)
+    const hasMerged = useRef(false)
+    useEffect(() => {
+        if (status === "authenticated") {
             setAuthStatus(true)
-            if(!hasMerged.current){
-                hasMerged.current=true
+            if (!hasMerged.current) {
+                hasMerged.current = true;
+                mergeGuestCartWithDB();
             }
-        }else if(status==="unauthenticated"){
+        } else if (status === "unauthenticated") {
             setAuthStatus(false)
-            hasMerged.current=false;
+            hasMerged.current = false;
         }
-    },[status,setAuthStatus])
-  return null;
+    }, [status, setAuthStatus])
+    return null;
 }

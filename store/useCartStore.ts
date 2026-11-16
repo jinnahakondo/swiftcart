@@ -14,7 +14,7 @@ interface CartState {
   quantityInc: (cartItemKey: CartItemKey) => Promise<void>;
   quantityDec: (cartItemKey: CartItemKey) => Promise<void>;
   removeItemFromCart: (cartItemKey: CartItemKey) => Promise<void>;
-  clearCart: () => void;
+  clearCart: () => Promise<void>;
   getItemQuantity: (cartItemKey: CartItemKey) => number;
 
   // mergeGuestCartWithDB:()=>Promise<void>
@@ -122,7 +122,16 @@ export const useCartStore = create<CartState>()(
           }
         },
         // clear cart
-        clearCart: () => set({ cart: [] }),
+        clearCart: async () => {
+          set({ cart: [] });
+          if(get().isAuthenticated){
+            try {
+              await axios.delete("/api/cart/clear-cart");
+            } catch (error) {
+              console.error("Failed to sync cart with server:", error);
+            }
+          }
+        },
         // get total quantity of a product
         getItemQuantity: (cartItemKey) => {
           const item = get().cart.find((item) =>

@@ -17,7 +17,7 @@ interface CartState {
   clearCart: () => Promise<void>;
   getItemQuantity: (cartItemKey: CartItemKey) => number;
 
-  // mergeGuestCartWithDB:()=>Promise<void>
+  mergeGuestCartWithDB:()=>Promise<void>
 }
 
 function isSameCartItem(a: CartItemKey, b: CartItemKey) {
@@ -140,9 +140,12 @@ export const useCartStore = create<CartState>()(
           return item?.quantity ?? 0;
         },
         // merge guest cart with db 
-        // mergeGuestCartWithDB:()=>{
-        //   return ;
-        // }
+        mergeGuestCartWithDB:()=>{
+          if(get().isAuthenticated){
+            
+          }
+          return ;
+        }
       }),
       {
         name: "swiftcart-cart",

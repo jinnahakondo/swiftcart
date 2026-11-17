@@ -4,19 +4,20 @@ import hero1 from "./hero1.jpeg";
 import hero2 from "./hero2.png";
 import logo from "./logo.png";
 
-const products: ProductType[] = [
+const products: ProductType[] =[
   {
-    "_id": "prod_001",
     "slug": "classic-cotton-tshirt",
     "title": "Classic Cotton T-Shirt",
-    "description": "A comfortable, breathable 100% organic cotton everyday t-shirt. This classic crew-neck tee is crafted from premium long-staple organic cotton that feels incredibly soft against the skin while remaining durable wash after wash. The relaxed yet tailored fit makes it perfect for layering or wearing on its own, and the reinforced shoulder seams ensure it keeps its shape through years of regular wear. Whether you're running errands, lounging at home, or heading out with friends, this versatile wardrobe staple delivers all-day comfort and effortless style.",
+    "description": "Upgrade your everyday wardrobe with this Classic Cotton T-Shirt, designed to deliver the perfect combination of comfort, simplicity, and timeless style. Made with soft and breathable cotton fabric, this t-shirt provides a lightweight feel that keeps you comfortable throughout the day. Its classic crew-neck design and versatile fit make it easy to pair with jeans, chinos, shorts, or casual trousers. The carefully finished neckline, reinforced stitching, and durable fabric help maintain its shape even after repeated washing. Whether you are heading out with friends, attending casual gatherings, traveling, or simply relaxing at home, this essential wardrobe staple offers effortless styling for every occasion. Available in multiple attractive colors and sizes to match your personal style.",
     "price": 29.99,
     "discountPrice": 24.99,
-    "stock": 5,
+    "stock": 50,
     "brand": "UrbanBasics",
     "images": [
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800"
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913916/shirt_bal1uc.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913916/shirt3_z5vajj.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913913/shirt2_o0wvhd.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913911/shirt4_tcyeyg.jpg"
     ],
     "category": "Apparel",
     "sizes": ["S", "M", "L", "XL"],
@@ -26,37 +27,37 @@ const products: ProductType[] = [
     "soldCount": 450
   },
   {
-    "_id": "prod_002",
     "slug": "slim-fit-denim-jeans",
     "title": "Slim Fit Denim Jeans",
-    "description": "Modern slim-fit jeans made from stretch denim for maximum comfort and mobility. These jeans feature a mid-rise waist and a tapered leg that flatters every body type, while the added elastane gives you the freedom to move without ever feeling restricted. The rich indigo wash is achieved through an eco-friendly dyeing process, and the reinforced belt loops and double-stitched seams ensure long-lasting durability. Perfect for pairing with sneakers or boots, these jeans transition seamlessly from casual Fridays at the office to weekend adventures.",
+    "description": "Discover the perfect balance of modern fashion and everyday comfort with these Slim Fit Denim Jeans. Designed with a contemporary silhouette, these jeans feature a streamlined fit that creates a clean and stylish appearance without compromising freedom of movement. The denim fabric offers a comfortable feel and durable construction, making it suitable for regular everyday wear. A versatile waist design, practical pockets, reinforced belt loops, and carefully finished stitching add functionality and long-lasting appeal. The classic denim look makes these jeans easy to style with t-shirts, casual shirts, hoodies, and sneakers. Whether you are going to college, meeting friends, traveling, or enjoying a weekend outing, these jeans provide a confident and effortless look. A must-have addition to any modern casual wardrobe.",
     "price": 79.99,
     "discountPrice": 64.99,
-    "stock": 18,
+    "stock": 35,
     "brand": "DenimCo",
     "images": [
-      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800",
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800"
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913918/jens_tzzphj.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913909/jens2_dxkcwq.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913908/jens3_lpghuu.jpg"
     ],
     "category": "Apparel",
     "sizes": ["28", "30", "32", "34", "36"],
-    "colors": ["Indigo", "Black", "Light Blue"],
+    "colors": ["Blue", "Black", "Light Blue"],
     "bestSelling": true,
     "rating": 4.6,
     "soldCount": 320
   },
   {
-    "_id": "prod_003",
-    "slug": "leather-belt",
+    "slug": "genuine-leather-belt",
     "title": "Genuine Leather Belt",
-    "description": "Handcrafted full-grain leather belt with a brushed metal buckle that adds a touch of timeless sophistication to any outfit. Each belt is cut from a single piece of premium full-grain leather, meaning it develops a beautiful unique patina over time that only gets better with age. The sturdy buckle is secured with double-riveted construction, and the five-hole adjustment system ensures a perfect fit for years to come. This is the kind of accessory that works equally well with tailored trousers and your favorite pair of jeans, making it a genuine investment piece.",
-    "price": 45.0,
+    "description": "Complete your outfit with this stylish Genuine Leather Belt, designed to bring sophistication and practicality to your everyday wardrobe. Featuring a timeless belt design and a durable metal buckle, this accessory is suitable for both formal and casual occasions. Its carefully crafted construction provides a comfortable fit while helping keep your trousers securely in place throughout the day. The classic finish makes it an excellent choice for pairing with denim jeans, chinos, dress pants, and office wear. Designed with attention to detail, the belt combines everyday functionality with a clean and elegant appearance. Whether you are dressing up for an important meeting, attending a special occasion, or creating a relaxed weekend outfit, this versatile accessory adds a polished finishing touch to your overall look.",
+    "price": 45.00,
     "discountPrice": 38.25,
     "stock": 32,
     "brand": "CraftLeather",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
-      "https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=800"
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913914/belt2_ual051.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913908/belt3_yg7hq2.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913906/belt_jzhksm.jpg"
     ],
     "category": "Accessories",
     "sizes": ["S", "M", "L"],
@@ -66,37 +67,120 @@ const products: ProductType[] = [
     "soldCount": 210
   },
   {
-    "_id": "prod_004",
-    "slug": "canvas-backpack",
+    "slug": "canvas-everyday-backpack",
     "title": "Canvas Everyday Backpack",
-    "description": "A durable waxed canvas backpack with a padded laptop sleeve and multiple organizational pockets for daily commutes and weekend trips. The water-resistant waxed canvas exterior shields your belongings from unexpected rain, while the padded back panel and adjustable ergonomic straps keep you comfortable even when the bag is fully loaded. Inside, you'll find a dedicated 15-inch laptop compartment, two mesh pockets, a key clip, and a spacious main compartment that fits a day's worth of gear. The antique brass hardware and leather trim give it a rugged, heritage look that never goes out of style.",
+    "description": "Make your daily commute more organized and comfortable with this Canvas Everyday Backpack. Designed for students, professionals, travelers, and everyday explorers, this backpack offers a practical combination of storage space and modern casual styling. Its spacious main compartment provides enough room for books, clothing, personal belongings, and other daily essentials. Multiple storage sections help keep smaller accessories organized and easily accessible whenever you need them. The adjustable shoulder straps provide a comfortable carrying experience, while the versatile design makes it suitable for school, college, office, weekend trips, and everyday travel. Its clean and functional appearance complements a wide range of outfits and lifestyles. Whether you are heading to class, commuting to work, or planning a short journey, this backpack is a reliable companion for carrying your essentials.",
     "price": 89.99,
     "discountPrice": 74.99,
-    "stock": 12,
+    "stock": 25,
     "brand": "TrailGear",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
-      "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=800"
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913911/backpack_j4wc2m.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913906/backpack2_rnxyyz.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913902/bagpack_ttghvt.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913895/backpack3_f48ijy.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913894/backpack4_ys9bvt.jpg"
     ],
     "category": "Accessories",
     "sizes": ["One Size"],
-    "colors": ["Olive", "Charcoal", "Tan"],
+    "colors": ["Black", "Brown", "Olive"],
     "bestSelling": true,
     "rating": 4.9,
     "soldCount": 610
   },
   {
-    "_id": "prod_005",
-    "slug": "running-sneakers",
+    "slug": "wireless-headphones",
+    "title": "Wireless Headphones",
+    "description": "Enjoy your favorite music, podcasts, and entertainment with these stylish Wireless Headphones. Designed for everyday listening, these headphones combine a modern appearance with a comfortable over-ear design that makes extended listening sessions more enjoyable. The cushioned ear areas provide a soft and comfortable fit, while the adjustable headband helps create a personalized wearing experience. Their wireless design offers convenient listening without the hassle of tangled cables, making them suitable for home, office, travel, and daily commuting. Whether you are attending online meetings, watching movies, studying, or relaxing with your favorite playlists, these headphones provide a convenient audio companion. With their versatile design and practical everyday functionality, they are an excellent choice for anyone looking to upgrade their personal audio experience.",
+    "price": 199.99,
+    "discountPrice": 169.99,
+    "stock": 20,
+    "brand": "AudioWave",
+    "images": [
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913909/wireless-headphones2_ehzvbv.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913900/wireless-headphones3_u13crf.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913882/wireless-headphones_teqx6a.jpg"
+    ],
+    "category": "Electronics",
+    "sizes": ["One Size"],
+    "colors": ["Black", "White", "Silver"],
+    "bestSelling": true,
+    "rating": 4.7,
+    "soldCount": 1200
+  },
+  {
+    "slug": "fitness-smart-watch",
+    "title": "Fitness Smart Watch",
+    "description": "Stay connected with your daily activities and complement your personal style with this modern Fitness Smart Watch. Featuring a contemporary watch design and a comfortable wrist strap, this smartwatch is a practical accessory for everyday use. Its versatile appearance makes it suitable for workouts, office activities, casual outings, and everyday routines. The stylish display provides a modern look, while its convenient wrist-worn design keeps useful information within easy reach. Designed to complement both casual and sporty outfits, this smartwatch makes a great addition to your everyday accessories collection. Whether you are looking for a stylish wearable for personal use or a thoughtful gift for someone special, this fitness-inspired smartwatch combines modern aesthetics with everyday convenience.",
+    "price": 249.99,
+    "discountPrice": 199.99,
+    "stock": 30,
+    "brand": "TechFit",
+    "images": [
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913900/Smart_Watch_vungfr.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913898/Smart_Watch2_zi4vwc.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913895/Smart_Watch3_vnyfvy.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913893/Smart_Watch4_rvdvpt.jpg"
+    ],
+    "category": "Electronics",
+    "sizes": ["40mm", "44mm"],
+    "colors": ["Black", "Silver", "Rose Gold"],
+    "bestSelling": false,
+    "rating": 4.4,
+    "soldCount": 540
+  },
+  {
+    "slug": "ceramic-coffee-mug",
+    "title": "Ceramic Coffee Mug",
+    "description": "Add a touch of elegance to your daily beverage routine with this beautifully designed Ceramic Coffee Mug. Created for everyday convenience, this mug features a practical handle that provides a comfortable grip while enjoying your favorite coffee, tea, hot chocolate, or other beverages. Its timeless ceramic appearance makes it a stylish addition to your kitchen, office desk, dining table, or coffee corner. The versatile design also makes it an excellent gift choice for coffee lovers, colleagues, friends, and family members. Whether you are starting your morning with a fresh cup of coffee, enjoying an afternoon tea break, or relaxing with a warm drink in the evening, this ceramic mug brings simplicity and style to every sip.",
+    "price": 24.00,
+    "discountPrice": 19.20,
+    "stock": 40,
+    "brand": "EarthWorks",
+    "images": [
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913892/Ceramic_Coffee_Mug3_jydnwz.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913891/Ceramic_Coffee_Mug_y5pluz.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913890/Ceramic_Coffee_Mug2_bvx9do.jpg"
+    ],
+    "category": "Home & Kitchen",
+    "sizes": ["12oz"],
+    "colors": ["White", "Cream", "Brown"],
+    "bestSelling": false,
+    "rating": 4.8,
+    "soldCount": 275
+  },
+  {
+    "slug": "non-slip-yoga-mat",
+    "title": "Non-Slip Yoga Mat",
+    "description": "Create a comfortable workout space at home or in the studio with this Non-Slip Yoga Mat. Designed for yoga, stretching, meditation, and general fitness exercises, this mat provides a supportive surface for your daily movement routine. Its textured surface helps improve grip and stability during different poses and workout positions, allowing you to focus more comfortably on your practice. The cushioned construction offers additional comfort when performing floor exercises, stretching routines, and relaxation activities. Lightweight and easy to roll up, it is convenient to store at home or carry to a fitness studio. Whether you are a beginner exploring yoga or an experienced fitness enthusiast maintaining a regular workout routine, this versatile exercise mat is a useful addition to your fitness essentials.",
+    "price": 49.99,
+    "discountPrice": 39.99,
+    "stock": 22,
+    "brand": "ZenFlow",
+    "images": [
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913891/Yoga_Mat2_ne4ifx.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913884/Yoga_Mat_d5v6il.jpg"
+    ],
+    "category": "Sports & Outdoors",
+    "sizes": ["68 x 24 inches"],
+    "colors": ["Purple", "Teal", "Grey"],
+    "bestSelling": false,
+    "rating": 4.6,
+    "soldCount": 380
+  },
+  {
+    "slug": "lightweight-running-sneakers",
     "title": "Lightweight Running Sneakers",
-    "description": "Engineered mesh running sneakers with responsive foam cushioning and a breathable upper for maximum performance on every run. The seamless engineered mesh upper delivers targeted ventilation where you need it most, while the responsive midsole foam returns energy with every stride to help you go farther and faster. A durable rubber outsole with a multi-directional tread pattern provides reliable traction on both wet and dry surfaces, and the padded heel collar locks your foot in place for a secure, blister-free fit mile after mile.",
+    "description": "Step into everyday comfort and modern sporty style with these Lightweight Running Sneakers. Designed for casual walking, daily activities, and outdoor adventures, these sneakers feature a contemporary appearance that pairs effortlessly with jeans, joggers, shorts, and other casual outfits. The comfortable interior provides a pleasant wearing experience, while the flexible construction supports natural movement throughout the day. Their versatile design makes them suitable for college, shopping, traveling, casual outings, and everyday use. The carefully designed exterior adds a sporty touch to your overall appearance without compromising practicality. Whether you are taking a morning walk, exploring the city, or spending a busy day outside, these sneakers are a dependable addition to your everyday footwear collection.",
     "price": 119.99,
     "discountPrice": 99.99,
     "stock": 25,
     "brand": "SpeedRun",
     "images": [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800"
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913890/sneakers_rumx7v.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913886/sneakers3_welsqq.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913883/sneakers4_eqsfcd.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913882/sneakers2_ljjysm.jpg"
     ],
     "category": "Footwear",
     "sizes": ["7", "8", "9", "10", "11", "12"],
@@ -106,205 +190,25 @@ const products: ProductType[] = [
     "soldCount": 890
   },
   {
-    "_id": "prod_006",
-    "slug": "wireless-headphones",
-    "title": "Wireless Noise-Cancelling Headphones",
-    "description": "Premium over-ear wireless headphones with active noise cancellation, 30-hour battery life, and plush memory foam ear cushions for immersive listening. The advanced hybrid active noise cancellation technology blocks out up to 95% of ambient noise, letting you focus on your music, podcast, or call even in the noisiest environments. Bluetooth 5.3 delivers a stable connection with low latency, and the built-in multipoint pairing lets you switch seamlessly between your laptop and phone. A quick 10-minute charge gives you 5 hours of playback, and the foldable design makes them easy to pack for travel.",
-    "price": 199.99,
-    "discountPrice": 169.99,
-    "stock": 8,
-    "brand": "AudioWave",
-    "images": [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800",
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800"
-    ],
-    "category": "Electronics",
-    "sizes": ["One Size"],
-    "colors": ["Black", "Silver", "Midnight Blue"],
-    "bestSelling": true,
-    "rating": 4.7,
-    "soldCount": 1200
-  },
-  {
-    "_id": "prod_007",
-    "slug": "smart-watch",
-    "title": "Fitness Smart Watch",
-    "description": "Advanced fitness smart watch with heart rate monitoring, GPS tracking, sleep analysis, and a bright always-on AMOLED display that stays readable even in direct sunlight. Track more than 100 workout modes, monitor your blood oxygen levels, and receive smart notifications from your phone right on your wrist. The 5ATM water resistance means you can swim, shower, and sweat without worry, while the 14-day battery life keeps you connected without constant charging. Compatible with both iOS and Android, it's the perfect companion for anyone serious about their health and fitness goals.",
-    "price": 249.99,
-    "discountPrice": 199.99,
-    "stock": 15,
-    "brand": "TechFit",
-    "images": [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800",
-      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800"
-    ],
-    "category": "Electronics",
-    "sizes": ["40mm", "44mm"],
-    "colors": ["Black", "Rose Gold", "Silver"],
-    "bestSelling": false,
-    "rating": 4.4,
-    "soldCount": 540
-  },
-  {
-    "_id": "prod_008",
-    "slug": "ceramic-coffee-mug",
-    "title": "Handmade Ceramic Coffee Mug",
-    "description": "Hand-glazed stoneware coffee mug that keeps your favorite brew warm and adds a rustic artisan touch to your morning routine. Each mug is individually thrown and glazed by skilled artisans, meaning no two pieces are exactly alike and you receive a truly one-of-a-kind item. The thick stoneware walls retain heat far longer than standard mugs, and the ergonomic handle is shaped to fit comfortably in your hand. Microwave and dishwasher safe for everyday convenience, this 12oz mug is the perfect gift for coffee lovers who appreciate craftsmanship.",
-    "price": 24.0,
-    "discountPrice": 19.2,
-    "stock": 40,
-    "brand": "EarthWorks",
-    "images": [
-      "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=800",
-      "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?w=800"
-    ],
-    "category": "Home & Kitchen",
-    "sizes": ["12oz"],
-    "colors": ["Speckled Cream", "Ocean Blue", "Terracotta"],
-    "bestSelling": false,
-    "rating": 4.8,
-    "soldCount": 275
-  },
-  {
-    "_id": "prod_009",
-    "slug": "stainless-water-bottle",
+    "slug": "insulated-steel-water-bottle",
     "title": "Insulated Stainless Steel Water Bottle",
-    "description": "Double-wall vacuum insulated water bottle that keeps drinks cold for 24 hours or hot for 12 hours, made from food-grade 18/8 stainless steel. The leak-proof lid with a silicone gasket ensures your bag stays dry, while the powder-coated exterior provides a secure grip and resists condensation. BPA-free and dishwasher safe, this 32oz bottle is designed to replace hundreds of single-use plastic bottles each year. The wide mouth fits ice cubes easily and accommodates most water filters, making it ideal for the gym, office, hiking, and travel.",
+    "description": "Stay hydrated throughout your day with this stylish Insulated Stainless Steel Water Bottle. Designed for everyday convenience, this reusable bottle is suitable for carrying water to the office, gym, school, outdoor activities, and travel. Its durable stainless steel construction offers a practical alternative to disposable plastic bottles, making it a useful addition to your everyday essentials. The sleek exterior provides a modern appearance, while the convenient bottle design makes it easy to carry wherever you go. Whether you are working at your desk, exercising at the gym, commuting, or enjoying outdoor adventures, this water bottle helps keep hydration within reach. Combining a versatile design with everyday functionality, it is an excellent choice for anyone looking for a reusable and stylish hydration companion.",
     "price": 34.99,
     "discountPrice": 27.99,
     "stock": 50,
     "brand": "HydroLife",
     "images": [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800",
-      "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800"
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913889/Steel_Water_Bottle_no6h5i.jpg",
+      "https://res.cloudinary.com/dz23btt8f/image/upload/v1794913889/Steel_Water_Bottle2_l54vfs.jpg"
     ],
     "category": "Sports & Outdoors",
     "sizes": ["24oz", "32oz", "40oz"],
-    "colors": ["Matte Black", "Sage Green", "Coral"],
+    "colors": ["Black", "Silver", "Green"],
     "bestSelling": true,
     "rating": 4.9,
     "soldCount": 1500
-  },
-  {
-    "_id": "prod_010",
-    "slug": "yoga-mat",
-    "title": "Non-Slip Yoga Mat",
-    "description": "Extra-thick 6mm non-slip yoga mat with alignment lines and a carrying strap for comfortable practice at home or in the studio. The dual-texture surface provides superior grip even during hot yoga sessions, while the 6mm high-density TPE foam cushions your joints and protects your knees and elbows during floor poses. Printed alignment guides help you perfect your form, and the lightweight, eco-friendly material is free from latex and PVC. When you're done, simply roll it up and carry it with the included strap - it's that easy.",
-    "price": 49.99,
-    "discountPrice": 39.99,
-    "stock": 22,
-    "brand": "ZenFlow",
-    "images": [
-      "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800",
-      "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=800"
-    ],
-    "category": "Sports & Outdoors",
-    "sizes": ["68\" x 24\""],
-    "colors": ["Purple", "Teal", "Grey"],
-    "bestSelling": false,
-    "rating": 4.6,
-    "soldCount": 380
-  },
-  {
-    "_id": "prod_011",
-    "slug": "polarized-sunglasses",
-    "title": "Polarized Aviator Sunglasses",
-    "description": "Classic aviator sunglasses with polarized lenses that block 100% of UVA and UVB rays and reduce glare for clearer, more comfortable vision on bright days. The lightweight metal frame is built from corrosion-resistant alloy and features adjustable nose pads for a customized, secure fit on any face shape. Polarized lenses cut through reflective glare from water, snow, and pavement, making them ideal for driving, fishing, and beach days. Each pair comes with a hard protective case, a microfiber cleaning cloth, and a lifetime warranty against frame defects.",
-    "price": 59.99,
-    "discountPrice": 47.99,
-    "stock": 30,
-    "brand": "SunVista",
-    "images": [
-      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800",
-      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800"
-    ],
-    "category": "Accessories",
-    "sizes": ["One Size"],
-    "colors": ["Gold/Green", "Silver/Blue", "Black/Grey"],
-    "bestSelling": false,
-    "rating": 4.3,
-    "soldCount": 190
-  },
-  {
-    "_id": "prod_012",
-    "slug": "scented-candle",
-    "title": "Soy Wax Scented Candle",
-    "description": "Hand-poured soy wax candle with a natural cotton wick and a relaxing lavender and vanilla scent that burns cleanly for up to 50 hours. Made from 100% natural soy wax, this candle burns slower and cleaner than paraffin alternatives, releasing a subtle, room-filling fragrance without any harsh chemicals or black soot. The reusable amber glass jar with its minimalist label looks beautiful on a nightstand, shelf, or coffee table, and the cotton wick ensures an even, steady flame. Perfect for unwinding after a long day, setting a cozy mood, or gifting to someone special.",
-    "price": 22.0,
-    "discountPrice": 17.6,
-    "stock": 45,
-    "brand": "AromaNest",
-    "images": [
-      "https://images.unsplash.com/photo-1602874801006-8f7f8e3c4a3a?w=800",
-      "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800"
-    ],
-    "category": "Home & Kitchen",
-    "sizes": ["8oz"],
-    "colors": ["Lavender Vanilla", "Sandalwood", "Citrus Grove"],
-    "bestSelling": true,
-    "rating": 4.8,
-    "soldCount": 720
-  },
-  {
-    "_id": "prod_013",
-    "slug": "mechanical-keyboard",
-    "title": "Compact Mechanical Keyboard",
-    "description": "A 75% hot-swappable mechanical keyboard with tactile brown switches, PBT keycaps, and customizable RGB backlighting for work and gaming. The hot-swap PCB lets you change switches without soldering, so you can customize the feel and sound of every key to your exact preference. Dye-sublimated PBT keycaps resist shine and wear far better than standard ABS, and the gasket-mounted design absorbs typing vibration for a satisfying, cushioned feel. Connect via USB-C, Bluetooth, or the included 2.4GHz wireless dongle, and switch between three paired devices with a single keypress.",
-    "price": 129.99,
-    "discountPrice": 109.99,
-    "stock": 10,
-    "brand": "KeyForge",
-    "images": [
-      "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=800",
-      "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800"
-    ],
-    "category": "Electronics",
-    "sizes": ["75%"],
-    "colors": ["White", "Black", "Navy"],
-    "bestSelling": false,
-    "rating": 4.7,
-    "soldCount": 260
-  },
-  {
-    "_id": "prod_014",
-    "slug": "cotton-hoodie",
-    "title": "Heavyweight Cotton Hoodie",
-    "description": "A cozy heavyweight cotton hoodie with a brushed fleece interior and a relaxed fit that's perfect for chilly mornings and laid-back weekends. Made from a 400gsm cotton-poly blend, this hoodie feels substantial without being bulky, and the brushed fleece lining traps warmth while remaining breathable. The double-lined hood with a flat drawcord, ribbed cuffs, and a kangaroo pocket complete the classic look, and the pre-shrunk fabric means it keeps its size and shape through countless washes. Layer it under a jacket or wear it on its own - either way, it's an instant favorite.",
-    "price": 64.99,
-    "discountPrice": 54.99,
-    "stock": 16,
-    "brand": "UrbanBasics",
-    "images": [
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800",
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800"
-    ],
-    "category": "Apparel",
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "colors": ["Heather Grey", "Black", "Forest Green"],
-    "bestSelling": true,
-    "rating": 4.6,
-    "soldCount": 430
-  },
-  {
-    "_id": "prod_015",
-    "slug": "leather-notebook",
-    "title": "Refillable Leather Notebook",
-    "description": "A refillable full-grain leather notebook with 160 pages of thick, fountain-pen-friendly paper and an elastic closure for journalling on the go. The supple leather cover softens and darkens beautifully with use, developing a personal character that no mass-produced notebook can match. The lay-flat binding makes writing comfortable on both pages, and the 100gsm acid-free paper resists bleed-through and feathering from even the wettest fountain pen inks. A ribbon bookmark, an expandable back pocket, and a pen loop complete this premium journal that's built to be refilled and treasured for decades.",
-    "price": 42.0,
-    "discountPrice": 35.7,
-    "stock": 20,
-    "brand": "CraftLeather",
-    "images": [
-      "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800",
-      "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800"
-    ],
-    "category": "Stationery",
-    "sizes": ["A5"],
-    "colors": ["Saddle Brown", "Black", "Burgundy"],
-    "bestSelling": false,
-    "rating": 4.9,
-    "soldCount": 340
   }
 ]
+
 
 export const asset = { logo, slides: [hero, hero1, hero2], products };

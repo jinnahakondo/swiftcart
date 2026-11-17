@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 export default function ImageView({ images }: { images: string[] }) {
@@ -6,8 +7,10 @@ export default function ImageView({ images }: { images: string[] }) {
   return (
     <div>
       <div className="w-full min-h-90 max-h-125 rounded-md overflow-hidden aspect-square ">
-        <img
+        <Image
           src={active}
+          width={500}
+          height={500}
           alt="Active preview"
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 rounded-md"
         />
@@ -18,11 +21,10 @@ export default function ImageView({ images }: { images: string[] }) {
             onClick={() => setActive(image)}
             key={image}
             src={image}
-            className={`h-20 rounded-md aspect-square object-cover cursor-pointer ${
-              active === image
-                ? "ring-2 ring-primary opacity-100 scale-95"
-                : "opacity-70 hover:opacity-100"
-            }`}
+            className={`h-20 rounded-md aspect-square object-cover cursor-pointer ${active === image
+              ? "ring-2 ring-primary opacity-100 scale-95"
+              : "opacity-70 hover:opacity-100"
+              }`}
           />
         ))}
       </div>

@@ -1,16 +1,16 @@
 import Hero from "@/components/ui/home/Hero";
-import { asset } from "./asset/asset";
-import { ProductCard } from "@/components/product/ProductCard";
+import { Suspense } from "react";
+import PopularProducts from "@/components/ui/home/PopularProducts";
 
-export default function Home() {
+
+export default async function Home() {
+
   return (
     <div className="space-y-10">
       <Hero />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {asset.products.map((product) => (
-          <ProductCard product={product} key={product._id} />
-        ))}
-      </div>
+      <Suspense fallback={<p className="text-center w-full text-2xl">Loading...</p>}>
+        <PopularProducts />
+      </Suspense>
     </div>
   );
 }

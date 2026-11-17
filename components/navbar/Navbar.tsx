@@ -6,7 +6,7 @@ import {
   Search,
 } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import NavLink from "../navlink/NavLink";
 import Image from "next/image";
 import { asset } from "@/app/asset/asset";
@@ -45,13 +45,13 @@ export default function Navbar() {
         {/* menu links */}
         <div className="hidden sm:flex items-center gap-4 text-muted">
           {navItems.map((item) => (
-            <NavLink
+            <Suspense key={item.href} fallback={'loading...'}> <NavLink
               className="text-muted-foreground font-medium uppercase hover:text-primary"
-              key={item.href}
+
               href={item.href}
             >
               {item.label}
-            </NavLink>
+            </NavLink></Suspense>
           ))}
         </div>
 

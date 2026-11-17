@@ -1,3 +1,4 @@
+export const instant = false
 import { asset } from "@/app/asset/asset";
 import ImageView from "@/components/product/ImageView";
 import ProductOptions from "@/components/product/ProductExtraInfo";
@@ -11,15 +12,24 @@ import {
 } from "@/components/ui/breadcrumb";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlignLeft, FileText, Info, Star, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
+
+async function getSingleProduct(slug: string) {
+  const res = await fetch(`http://localhost:3000/api/products/${slug}`)
+  if (!res.ok) throw new Error('Failed to fetch single product')
+  const data = await res.json()
+  return data.data || {}
+}
 
 export default async function ProductDetails({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  "use cache"
   const { slug } = await params;
-  const product = asset.products.find((product) => product.slug === slug);
+
+  const product = await getSingleProduct(slug)
   const save =
     product?.price && Math.ceil(product?.price - product?.discountPrice);
 

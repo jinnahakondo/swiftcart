@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
 
 
-        await Promise.all(
+        const updatedCartItems = await Promise.all(
             mergedCartItems.map(item => {
                 const {
                     quantity,
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
                     updatedAt,
                     ...insertFields
                 } = item;
-                console.log({ insertFields })
+
                 return CartItem.findOneAndUpdate(
                     {
                         user: user.id,
@@ -63,15 +63,17 @@ export async function POST(req: NextRequest) {
                     new: true,
                     runValidators: true,
                 }
-                )
+                ).lean()
             })
         )
 
-        const updatedCartItems = await CartItem.find({
-            user: user.id,
-        });
+        const sanitizedItems = updatedCartItems.map((item) => {
+            const { createdAt, updatedAt, __v, _id, ...sanitizedItem } = item;
+            return sanitizedItem;
+        })
 
-        return sendSuccessRes({ status: 200, message: "Cart items merged successfully", data: updatedCartItems });
+
+        return sendSuccessRes({ status: 200, message: "Cart items merged successfully", data: sanitizedItems });
 
 
     } catch (error: unknown) {

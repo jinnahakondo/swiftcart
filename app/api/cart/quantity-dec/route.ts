@@ -14,7 +14,7 @@ export async function PATCH(req: NextRequest) {
             { user: user.id, product, color, size },
             { $inc: { quantity: -1 } },
             { returnDocument: "after" }
-        );
+        ).lean();
 
         if (!result) {
             return sendErrorRes({ status: 404, message: "Cart item not found" });

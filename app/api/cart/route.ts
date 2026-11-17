@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
                 },
                 { $inc: { quantity: qty } },
                 { new: true }
-            )
+            ).lean()
             return sendSuccessRes({ status: 200, message: "Item quantity updated successfully", data: updateItem })
         }
         const newItem = await CartItem.create({

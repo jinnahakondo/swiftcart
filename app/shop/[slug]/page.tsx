@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { StarIcon } from "lucide-react";
+import { AlignLeft, FileText, Info, Star, StarIcon } from "lucide-react";
 
 export default async function ProductDetails({
   params,
@@ -86,15 +86,59 @@ export default async function ProductDetails({
       </div>
       <Tabs
         orientation="horizontal"
-        className="pt-10 flex flex-col"
+        className="pt-8 pb-10 border-t flex flex-col"
         defaultValue="description"
       >
-        <TabsList className=" ">
-          <TabsTrigger value="description">Description</TabsTrigger>
-          <TabsTrigger value="reviews">Reviews</TabsTrigger>
-        </TabsList>
-        <TabsContent value="description" className="w-full">
-          {product?.description}
+        <div className="border-b">
+          <TabsList variant="line" className="gap-8">
+            <TabsTrigger
+              value="description"
+              className="gap-2 px-1 text-sm font-semibold tracking-wide !data-active:after:bg-primary"
+            >
+              Description
+            </TabsTrigger>
+            <TabsTrigger
+              value="reviews"
+              className="gap-2 px-1 text-sm font-semibold tracking-wide !data-active:after:bg-primary"
+            >
+              Reviews
+            </TabsTrigger>
+          </TabsList>
+        </div>
+
+        <TabsContent value="description" className="w-full pt-6 max-w-3xl">
+          <h3 className="text-base font-semibold mb-2">Product details</h3>
+          <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
+            {product?.description}
+          </p>
+        </TabsContent>
+
+        <TabsContent value="reviews" className="w-full pt-6 max-w-3xl">
+          <div className="flex items-center gap-4">
+            <p className="text-4xl font-bold">
+              {product?.rating ? product.rating.toFixed(1) : "—"}
+            </p>
+            <div className="space-y-1">
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, index) => (
+                  <StarIcon
+                    key={index}
+                    size={14}
+                    className={
+                      product?.rating && index < Math.round(product.rating)
+                        ? "fill-primary text-primary"
+                        : "text-muted-foreground/40"
+                    }
+                  />
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground">out of 5</p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            No written reviews yet. Be the first to share your thoughts on this
+            product.
+          </p>
         </TabsContent>
       </Tabs>
     </div>
